@@ -34,14 +34,13 @@ app.get("/users", (request, response) => {
    // var stats = fs.lstatSync(`/Data/${getUrl}`)
    // if (stats.isDirectory()) {
    app.post("/NewData", function (req, res) {
-
       sad.push(req.body.user.name)
       fs.writeFileSync(`./Data/${getUrl}.json`, JSON.stringify(sad, null, 4))
    });
-   app.get("/sad", (reqq, ress) => {
-      ress.sendFile(__dirname + `/${getUrl}.json`);
-      ress.json(sad);
-   });
+   // app.get("/sad", (reqq, ress) => {
+   //    ress.sendFile(__dirname + `/${getUrl}.json`);
+   //    ress.json(sad);
+   // });
    // }
    // }
 });
