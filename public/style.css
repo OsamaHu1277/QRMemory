@@ -1,0 +1,73 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: rgb(96, 181, 202);
+}
+
+#content {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 15%;
+}
+
+#qrcode {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#qrcode img {
+    padding: 10px;
+}
+
+#submitbox {
+    width: 30%;
+    padding: 5px;
+    text-align: center;
+    font-size: 30px;
+}
+
+#NewUser {
+    display: block;
+    color: white;
+}
+
+form {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#userCont {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 15%;
+}
+
+#AddData {
+    width: 30%;
+    padding: 5px;
+    text-align: center;
+    font-size: 30px;
+}
+#ADD {
+    color: white;
+    font-size: 30px;
+    font-weight: bolder;
+}
+section {
+    margin-top: 5px;
+    border: 2px solid #fff;
+
+}
+
+section ul {
+    list-style: none;
+    font-size: 30px;
+}
