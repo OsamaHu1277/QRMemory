@@ -53,14 +53,14 @@ form {
     justify-content: center;
     text-align: center;
     align-items: center;
-    margin-top: 15%;
+    margin-top: 5%;
 }
 
 form input {
     width: 30%;
     padding: 5px;
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     outline: none;
 }
 
@@ -100,4 +100,25 @@ section ul li span {
 section ul span {
     color: #fff;
     text-decoration: none;
+}
+
+#errorContent {
+    text-align: center;
+}
+
+#error {
+    padding: 20% 0;
+    color: #fff;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+@media screen and (max-width: 960px) {
+    #logo {
+        width: 30%;
+        margin-bottom: 50px;
+    }
+    form input {
+        width: 60%;
+    }
 }

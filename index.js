@@ -16,6 +16,10 @@ app.get("/", (request, response) => {
    response.sendFile(__dirname + "/QR.html");
 });
 
+app.get("/error", (request, response) => {
+   response.sendFile(__dirname + "/error.html");
+});
+
 app.use(function (err, req, res, next) {
    console.error(err.stack)
 
@@ -24,11 +28,15 @@ app.use(function (err, req, res, next) {
 app.get("/users", (request, response) => {
    response.sendFile(__dirname + "/user.html");
    var getUrl = request.url.split(/\/users\?user=/g).join(' ').slice(1)
-   const sad = require(`./Data/${getUrl}.json`)
-   app.post("/NewData", function (req, res) {
-      sad.unshift(`${req.body.user.name}`)
-      fs.writeFileSync(`./Data/${getUrl}.json`, JSON.stringify(sad, null, 4))
-   });
+   try {
+      const sad = require(`./Data/${getUrl}.json`)
+      app.post("/NewData", function (req, res) {
+         sad.unshift(`${req.body.user.name}`)
+         fs.writeFileSync(`./Data/${getUrl}.json`, JSON.stringify(sad, null, 4))
+      });
+   } catch (error) {
+      response.status(404).redirect('/error')
+   }
 
 });
 
@@ -44,13 +52,16 @@ app.post("/users", function (request, response) {
          fs.writeFileSync(`./Data/${request.body.user.name}.json`, JSON.stringify(newUser, null, 4))
       }
    } catch (error) {
-      console.log(error)
+      response.status(404).redirect('/error')
    }
 });
 
 
 
 
+app.use((req, res) => {
+   res.status(404).redirect('/error')
+});
 const listener = app.listen("3000", () => {
    console.log("app is listening on port " + listener.address().port);
 });
