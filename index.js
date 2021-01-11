@@ -26,7 +26,7 @@ app.get("/users", (request, response) => {
    var getUrl = request.url.split(/\/users\?user=/g).join(' ').slice(1)
    console.log(getUrl)
 
-   
+
    // if (response.status(500)) {
    //    return response.send('QR User Not Found!')
    // } else {
@@ -34,7 +34,7 @@ app.get("/users", (request, response) => {
    // var stats = fs.lstatSync(`/Data/${getUrl}`)
    // if (stats.isDirectory()) {
    app.post("/NewData", function (req, res) {
-      sad.push(req.body.user.name)
+      sad.unshift(req.body.user.name)
       fs.writeFileSync(`./Data/${getUrl}.json`, JSON.stringify(sad, null, 4))
    });
    // app.get("/sad", (reqq, ress) => {

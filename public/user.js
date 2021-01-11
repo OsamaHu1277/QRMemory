@@ -34,7 +34,6 @@ fetch(`/${file}.json`)
             })
             DataForm.reset()
             event.preventDefault();
-            // List.load(`http://localhost:3000/users?user=${file}`+ " #List")
+            DataList.load(`user.html`)
         });
     });
-
