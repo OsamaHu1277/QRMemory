@@ -29,15 +29,14 @@ app.get("/users", (request, response) => {
    response.sendFile(__dirname + "/user.html");
    var getUrl = request.url.split(/\/users\?user=/g).join(' ').slice(1)
    try {
-      const sad = require(`./Data/${getUrl}.json`)
+      const JsonPage = require(`./Data/${getUrl}.json`)
       app.post("/NewData", function (req, res) {
-         sad.unshift(`${req.body.user.name}`)
-         fs.writeFileSync(`./Data/${getUrl}.json`, JSON.stringify(sad, null, 4))
+         JsonPage.unshift(`${req.body.user.name}`)
+         fs.writeFileSync(`./Data/${getUrl}.json`, JSON.stringify(JsonPage, null, 4))
       });
    } catch (error) {
       response.status(404).redirect('/error')
    }
-
 });
 
 
@@ -56,12 +55,6 @@ app.post("/users", function (request, response) {
    }
 });
 
-
-
-
-app.use((req, res) => {
-   res.status(404).redirect('/error')
-});
 const listener = app.listen("3000", () => {
    console.log("app is listening on port " + listener.address().port);
 });

@@ -18,15 +18,13 @@ console.log(file)
 fetch(`/${file}.json`)
     .then(response => response.json())
     .then(List => {
-
-
-
         DataForm.addEventListener("submit", event => {
             if (!message.value) {
                 alert('Please Type Something!')
                 DataForm.reset()
                 event.preventDefault();
-            } else {
+                return
+            } 
                 fetch('/NewData', {
                     method: 'POST',
                     headers: {
@@ -41,13 +39,12 @@ fetch(`/${file}.json`)
                 location.reload()
                 DataForm.reset()
                 event.preventDefault();
-            }
+            
         });
         if (List.length === 0) {
             DataList.firstElementChild.innerHTML = "No Data"
         } else {
             DataList.firstElementChild.remove()
             List.forEach(appendNewDream);
-
         }
     });
