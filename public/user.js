@@ -18,22 +18,36 @@ console.log(file)
 fetch(`/${file}.json`)
     .then(response => response.json())
     .then(List => {
-        DataList.firstElementChild.remove();
-        List.forEach(appendNewDream);
+
+
+
         DataForm.addEventListener("submit", event => {
-            fetch('/NewData', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    user: {
-                        name: message.value,
-                    }
+            if (!message.value) {
+                alert('Please Type Something!')
+                DataForm.reset()
+                event.preventDefault();
+            } else {
+                fetch('/NewData', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user: {
+                            name: message.value,
+                        }
+                    })
                 })
-            })
-            DataForm.reset()
-            event.preventDefault();
-            DataList.load(`user.html`)
+                location.reload()
+                DataForm.reset()
+                event.preventDefault();
+            }
         });
+        if (List.length === 0) {
+            DataList.firstElementChild.innerHTML = "No Data"
+        } else {
+            DataList.firstElementChild.remove()
+            List.forEach(appendNewDream);
+
+        }
     });

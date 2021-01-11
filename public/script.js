@@ -18,7 +18,7 @@ async function NewUser() {
     let QRCODE = QR()
     document.getElementById("qrcode").firstElementChild.remove()
     QRCODE.makeCode(`http://localhost:3000/users?user=${message.value}`)
-    fetch('/CreateNewUser', {
+    fetch('/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

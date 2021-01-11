@@ -24,25 +24,12 @@ app.use(function (err, req, res, next) {
 app.get("/users", (request, response) => {
    response.sendFile(__dirname + "/user.html");
    var getUrl = request.url.split(/\/users\?user=/g).join(' ').slice(1)
-   console.log(getUrl)
-
-
-   // if (response.status(500)) {
-   //    return response.send('QR User Not Found!')
-   // } else {
    const sad = require(`./Data/${getUrl}.json`)
-   // var stats = fs.lstatSync(`/Data/${getUrl}`)
-   // if (stats.isDirectory()) {
    app.post("/NewData", function (req, res) {
-      sad.unshift(req.body.user.name)
+      sad.unshift(`${req.body.user.name}`)
       fs.writeFileSync(`./Data/${getUrl}.json`, JSON.stringify(sad, null, 4))
    });
-   // app.get("/sad", (reqq, ress) => {
-   //    ress.sendFile(__dirname + `/${getUrl}.json`);
-   //    ress.json(sad);
-   // });
-   // }
-   // }
+
 });
 
 
@@ -53,8 +40,6 @@ app.post("/users", function (request, response) {
       if (fs.existsSync(`./Data/${request.body.user.name}.json`)) {
          response.redirect(pathURL)
       } else {
-         console.log('yes2')
-
          var newUser = []
          fs.writeFileSync(`./Data/${request.body.user.name}.json`, JSON.stringify(newUser, null, 4))
       }
